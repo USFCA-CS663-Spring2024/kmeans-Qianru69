@@ -1,4 +1,5 @@
 import random
+random.seed(12345678)
 
 class cluster:
 
@@ -134,13 +135,6 @@ class cluster:
                         smallest_cluster_index = cluster_sizes.index(min(cluster_sizes))
         return cluster_labels, centroids
 
-X = [[0, 0], [2, 2], [0, 2], [2, 0], [10, 10], [8, 8], [10, 8], [8, 10]]
-cluster_predict = cluster(2, 1, True)
-print(cluster_predict.fit(X))
-
-
-
-
-
-
-
+#X = [[0, 0], [2, 2], [0, 2], [2, 0], [10, 10], [8, 8], [10, 8], [8, 10]]
+#cluster_predict = cluster(2, 1, True)
+#print(cluster_predict.fit(X))
