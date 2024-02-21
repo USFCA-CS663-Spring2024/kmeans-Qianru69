@@ -78,7 +78,7 @@ class cluster:
                 sums[i] += p[i]
         return [total / len(points) for total in sums]
 
-    def balance(self, cluster_labels, centroids, X):
+    def balance(self, cluster_labels, centroids, x):
         max_i_for_balancing = 10
         for i in range(max_i_for_balancing):
             # Calculate cluster sizes
@@ -116,16 +116,15 @@ class cluster:
                         cluster_sizes[smallest_cluster_index] += 1
 
                         # Update centroids
-                        # For simplicity, we'll recalculate from scratch for affected clusters
-                        for ki in [largest_cluster_index, smallest_cluster_index]:
+                        for index in [largest_cluster_index, smallest_cluster_index]:
                             assigned_points = []
                             # 𝜇k = mean c(i) | index(c(i)) == k
-                            for xi, point in enumerate(X):
-                                if cluster_labels[xi] == ki:  # If the point is assigned to the current centroid
+                            for x_i, point in enumerate(x):
+                                if cluster_labels[x_i] == index:  # If the point is assigned to the current centroid
                                     assigned_points.append(point)
 
                             if assigned_points:  # Avoid division by zero
-                                centroids[ki] = self.find_centroid(assigned_points)
+                                centroids[index] = self.find_centroid(assigned_points) # update centroid
                             else:
                                 # Edge case: cluster has no points, keep the old centroid
                                 pass
